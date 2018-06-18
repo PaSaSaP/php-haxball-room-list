@@ -319,10 +319,10 @@ else
         col_2: "select",
 		col_3: "select",
 		col_4: "select",
-        loader: true,
+        loader: false,
         sort_select: true,
 	}
-	setFilterGrid("table1",1,table3Filters);
+	setFilterGrid("table1",0,table3Filters);
 </script>
 </dev>
 
