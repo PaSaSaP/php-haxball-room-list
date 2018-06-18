@@ -305,7 +305,7 @@ else
     <tbody>
     <?php foreach($rooms as $key => $value): ?>
         <tr>
-	<td name='country'><img src="flags/<?php echo $value->country; ?>.png" alt="<?php echo $value->country; ?>"></td>
+    <td name='country'><img src="flags/<?php echo $value->country; ?>.png" alt="<?php echo $value->country; ?>"></td>
             <td name='name'><a href='<?php echo $value->url; ?>'><?php if(0 == strlen($value->name)) echo "[[EMPTY NAME]]"; else echo $value->name; ?></a></td>
             <td name='players'><?php echo $value->actual_players.'/'.$value->max_players; $url = '"https://www.google.pl/maps/@'.$value->lat.','.$value->lon.',14z"'; ?></td>
             <td name='HTML5'><?php if($value->n2 != 31) echo 'YES'; else echo 'NO'; ?></td>
@@ -320,12 +320,13 @@ else
 <script>
 var tf = new TableFilter(document.querySelector('table'), {
     base_path: 'TableFilter/',
-        col_0: "none",
-        col_2: "select",
-        col_3: "select",
-        col_4: "select",
-        loader: false,
-        sort_select: true,
+    col_0: "none",
+    col_2: "select",
+    col_3: "select",
+    col_4: "select",
+    loader: false,
+    sort_select: true,
+    alternate_rows: true,
 });
 tf.init();
 </script>
