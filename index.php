@@ -114,9 +114,14 @@ function bytes_as_uchar(&$data)
     return $r[1];
 }
 
-function bytes_as_float(&$data)
+function bytes_as_float(&$data, $machine_dependent_size = false)
 {
-    return hexTo32Float(strhex(implode($data)));
+    if($machine_dependent_size)
+    {
+        return hexTo32Float(strhex(implode($data)));
+    }
+    $r = unpack('f', implode($data));
+    return $r[1];
 }
 
 function get_haxball_short(&$data, &$index)
@@ -129,9 +134,9 @@ function get_haxball_uchar(&$data, &$index)
     return bytes_as_uchar(read_bytes($data, 1, $index));
 }
 
-function get_haxball_float(&$data, &$index)
+function get_haxball_float(&$data, &$index, $machine_dependent_size = false)
 {
-    return bytes_as_float(read_bytes($data, 4, $index));
+    return bytes_as_float(read_bytes($data, 4, $index), $machine_dependent_size);
 }
 
 function get_haxball_string(&$data, &$index)
@@ -157,8 +162,8 @@ function get_haxball_room(&$data, &$index)
     $max_players = get_haxball_uchar($data, $index);
     $password = get_haxball_uchar($data, $index);
     $country = get_haxball_string($data, $index);
-    $lat = get_haxball_float($data, $index);
-    $lon = get_haxball_float($data, $index);
+    $lat = get_haxball_float($data, $index, true);
+    $lon = get_haxball_float($data, $index, true);
     return new Room($n1, $n2, $url, $name, $actual_players, $max_players, $password, $country, $lat, $lon);
 }
 
