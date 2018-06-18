@@ -320,7 +320,7 @@ else
 <dev>
 <script language="javascript" type="text/javascript">
     var table3Filters = {
-        col_0: "select",
+        col_0: "none",
         col_2: "select",
         col_3: "select",
         col_4: "select",
