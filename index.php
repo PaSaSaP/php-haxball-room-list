@@ -10,18 +10,18 @@
 @import "filtergrid.css";
 
 /*====================================================
-	- General html elements
+    - General html elements
 =====================================================*/
-body{ 
-	margin:15px; padding:15px; border:1px solid #666;
-	font-family:Arial, Helvetica, sans-serif; font-size:88%; 
+body{
+    margin:15px; padding:15px; border:1px solid #666;
+    font-family:Arial, Helvetica, sans-serif; font-size:88%;
 }
 h2{ margin-top: 50px; }
 caption{ margin:10px 0 0 5px; padding:10px; text-align:left; }
 pre{ font-size:13px; margin:5px; padding:5px; background-color:#f4f4f4; border:1px solid #ccc;  }
 .mytable{
-	width:100%; font-size:12px;
-	border:1px solid #ccc;
+    width:100%; font-size:12px;
+    border:1px solid #ccc;
 }
 div.tools{ margin:5px; }
 div.tools input{ background-color:#f4f4f4; border:2px outset #f4f4f4; margin:2px; }
@@ -36,13 +36,13 @@ td{ padding:2px; border-bottom:1px solid #ccc; border-right:1px solid #ccc; }
 
 <?php
 
-function strhex($string) 
+function strhex($string)
 {
   $hexstr = unpack('H*', $string);
   return array_shift($hexstr);
 }
 
-function distance($lat1, $lon1, $lat2, $lon2) 
+function distance($lat1, $lon1, $lat2, $lon2)
 {
   $theta = $lon1 - $lon2;
   $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
@@ -53,7 +53,7 @@ function distance($lat1, $lon1, $lat2, $lon2)
   return ($miles * 1.609344);
 }
 
-function hexTo32Float($strHex) 
+function hexTo32Float($strHex)
 {
     $v = hexdec($strHex);
     $x = ($v & ((1 << 23) - 1)) + (1 << 23) * ($v >> 31 | 1);
@@ -64,7 +64,7 @@ function hexTo32Float($strHex)
 class Room
 {
     var $n1, $n2, $url, $name, $actual_players, $max_players, $password, $country, $lat, $lon;
-    
+
     function __construct($n1, $n2, $url, $name, $actual_players, $max_players, $password, $country, $lat, $lon)
     {
         $this->n1 = $n1;
@@ -78,7 +78,7 @@ class Room
         $this->lat = $lat;
         $this->lon = $lon;
     }
-    
+
     public function show()
     {
         echo "n1 $this->n1, n2 $this->n2, url $this->url, name $this->name, actual_players $this->actual_players, max_players $this->max_players, password $this->password, country $this->country, lat $this->lat, lon $this->lon";
@@ -96,7 +96,7 @@ $mutex_name = 'Random_mutex_name21ej345766dfjlkgjd8kdn84';
 
 function read_bytes(&$data, $n, &$index)
 {
-	$n = intval($n);
+    $n = intval($n);
     $result = array(substr($data, $index, $n));
     $index = $index + $n;
     return $result;
@@ -104,7 +104,7 @@ function read_bytes(&$data, $n, &$index)
 
 function bytes_as_short(&$data)
 {
-	$r = unpack('n', implode($data));
+    $r = unpack('n', implode($data));
     return $r[1];
 }
 
@@ -180,12 +180,12 @@ function get_haxball_room_html5(&$data, &$index)
 
 function compare_rooms(&$x, &$y)
 {
-	$country_cmp_result = strcasecmp($x->country, $y->country);
-	if($country_cmp_result != 0)
-	{
-		return $country_cmp_result;
-	}
-	return strcasecmp($x->name, $y->name);
+    $country_cmp_result = strcasecmp($x->country, $y->country);
+    if($country_cmp_result != 0)
+    {
+        return $country_cmp_result;
+    }
+    return strcasecmp($x->name, $y->name);
 }
 
 function sort_rooms(&$rooms)
@@ -198,7 +198,7 @@ function decode_list(&$encoded, $html5)
     $encoded_len = strlen($encoded);
     $index = 0;
     $header_size = 5;
-    
+
     if($html5 == 1)
     {
         $header_size = 1;
@@ -254,7 +254,7 @@ function read_json_file($fn)
 
     $rooms = array();
     foreach($json as $key):
-        $rooms[] = new Room($key->n1, $key->n2, $key->url, $key->name, $key->actual_players, 
+        $rooms[] = new Room($key->n1, $key->n2, $key->url, $key->name, $key->actual_players,
                     $key->max_players, $key->password, $key->country, $key->lat, $key->lon);
     endforeach;
     return $rooms;
@@ -284,7 +284,7 @@ $file_modification_time = filemtime($file_rooms_list);
 $interval = $current_time - $file_modification_time;
 if($interval > 5)
 {
-	get_rooms($rooms);
+    get_rooms($rooms);
 }
 else
 {
@@ -315,16 +315,16 @@ else
 <dev>
 <script language="javascript" type="text/javascript">
     var table3Filters = {
-		col_0: "select",
+        col_0: "select",
         col_2: "select",
-		col_3: "select",
-		col_4: "select",
+        col_3: "select",
+        col_4: "select",
         loader: false,
         sort_select: true,
-	}
-	setFilterGrid("table1",0,table3Filters);
+    }
+    setFilterGrid("table1",0,table3Filters);
 </script>
 </dev>
 
 </body>
-</html> 
+</html>
