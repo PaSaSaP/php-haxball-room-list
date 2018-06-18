@@ -180,7 +180,12 @@ function get_haxball_room_html5(&$data, &$index)
 
 function compare_rooms(&$x, &$y)
 {
-    return (strcmp($x->country, $y->country)) or (strcmp($x->name, $y->name));
+	$country_cmp_result = strcasecmp($x->country, $y->country);
+	if($country_cmp_result != 0)
+	{
+		return $country_cmp_result;
+	}
+	return strcasecmp($x->name, $y->name);
 }
 
 function sort_rooms(&$rooms)
@@ -235,6 +240,7 @@ function get_rooms(&$rooms)
     $rooms2 = decode_list($xml_html5, 1);
 
     $rooms = array_merge($rooms1, $rooms2);
+    sort_rooms($rooms);
 
     dump_rooms_to_json($rooms, $file_rooms_list);
 }
@@ -312,6 +318,7 @@ else
 		col_0: "select",
         col_2: "select",
 		col_3: "select",
+		col_4: "select",
         loader: true,
         sort_select: true,
 	}
