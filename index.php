@@ -301,7 +301,7 @@ else
 
 ?>
 <dev>
-<table border="1" cellpadding="10" id="table1" class="mytable">
+<table border="1" cellpadding="10" id="table" class="mytable">
     <thead><tr><th id='country'>Country</th><th id='name'>Name of room</th><th id='players'>Players</th><th id='html5'>HTML5</th><th id='password'>Has password</th><th name='distance'>Distance</th></tr></thead>
     <tbody>
     <?php foreach($rooms as $key => $value): ?>
@@ -319,7 +319,7 @@ else
 </dev>
 <dev>
 <script language="javascript" type="text/javascript">
-    var table3Filters = {
+    var tableFilters = {
         col_0: "none",
         col_2: "select",
         col_3: "select",
@@ -327,7 +327,7 @@ else
         loader: false,
         sort_select: true,
     }
-    setFilterGrid("table1",0,table3Filters);
+    setFilterGrid("table",0,tableFilters);
 </script>
 </dev>
 
