@@ -29,7 +29,7 @@ th{ background-color:#003366; color:#FFF; padding:2px; border:1px solid #ccc; }
 td{ padding:2px; border-bottom:1px solid #ccc; border-right:1px solid #ccc; }
 
 </style>
-<script language="javascript" type="text/javascript" src="tablefilter/dist/tablefilter/tablefilter.js"></script>
+<script language="javascript" type="text/javascript" src="TableFilter/dist/tablefilter/tablefilter.js"></script>
 </head>
 <body>
 
@@ -319,7 +319,7 @@ else
 <dev>
 <script>
 var tf = new TableFilter(document.querySelector('table'), {
-    base_path: 'tablefilter/',
+    base_path: 'TableFilter/',
         col_0: "none",
         col_2: "select",
         col_3: "select",
